@@ -14,8 +14,6 @@ public class AddAdmin extends JPanel {
     private static JTextField txtEmail;
     private static JTextField txtPhone;
     private static JTextField txtHiringDate;
-    private static JTextField txtDepartment;
-    private static JTextField txtJobTitle;
 
     public AddAdmin() {
         setLayout(null);
@@ -25,35 +23,23 @@ public class AddAdmin extends JPanel {
         lblHeader.setFont(new Font("Arial", Font.BOLD, 22));
         add(lblHeader);
 
-        setPreferredSize(new Dimension(669, 679));
+        setPreferredSize(new Dimension(755, 679));
         setBackground(new Color(245, 245, 245));
 
         JPanel panel = new JPanel();
-        panel.setBounds(58, 53, 567, 611);
+        panel.setBounds(58, 53, 657, 611);
         add(panel);
         panel.setLayout(null);
 
-        JLabel lbName = new JLabel("Name");
+        JLabel lbName = new JLabel("<html>Name <span style='color:red;'>*</span></html>");
         lbName.setFont(new Font("Arial", Font.PLAIN, 14));
         lbName.setBounds(31, 10, 73, 20);
         panel.add(lbName);
         
         txtName = new JTextField();
-        txtName.setBounds(31, 35, 508, 25);
+        txtName.setBounds(31, 35, 590, 25);
         panel.add(txtName);
-        
-//        txtName.addKeyListener(new KeyAdapter() {
-//            @Override
-//            public void keyReleased(KeyEvent e) {
-//                String input = txtName.getText();
-//                if (!Checking.IsValidName(input)) {
-//                    txtName.setBorder(BorderFactory.createLineBorder(Color.RED));
-//                } else {
-//                    txtName.setBorder(UIManager.getBorder("TextField.border"));
-//                }
-//            }
-//        });
-        
+            
         txtName.addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
             public void keyTyped(java.awt.event.KeyEvent e) {
@@ -69,13 +55,13 @@ public class AddAdmin extends JPanel {
             }
         });
 
-        JLabel lbPhone = new JLabel("Phone Number");
+        JLabel lbPhone = new JLabel("<html>Phone Number <span style='color:red;'>*</span></html>");
         lbPhone.setFont(new Font("Arial", Font.PLAIN, 14));
-        lbPhone.setBounds(31, 70, 100, 20);
+        lbPhone.setBounds(31, 70, 135, 20);
         panel.add(lbPhone);
 
         txtPhone = new JTextField();
-        txtPhone.setBounds(31, 100, 508, 25);
+        txtPhone.setBounds(31, 100, 590, 25);
         panel.add(txtPhone);
         
         txtPhone.addKeyListener(new KeyAdapter() {
@@ -95,22 +81,38 @@ public class AddAdmin extends JPanel {
         });
 
         
-        JLabel lbEmail = new JLabel("Email");
+        JLabel lbEmail = new JLabel("<html>Email <span style='color:red;'>*</span></html>");
         lbEmail.setFont(new Font("Arial", Font.PLAIN, 14));
         lbEmail.setBounds(31, 135, 73, 20);
         panel.add(lbEmail);
 
         txtEmail = new JTextField();
-        txtEmail.setBounds(31, 170, 508, 25);
+        txtEmail.setBounds(31, 170, 590, 25);
         panel.add(txtEmail);
+        
+        txtEmail.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                String emailInput = txtEmail.getText();
 
-        JLabel lbHiringDate = new JLabel("Hiring Date");
+                // Check if the email format is valid using the Checking method
+                if (!Checking.IsEmailFormat(emailInput)) {
+                    // Set the border color to red if the validation fails
+                    txtEmail.setBorder(BorderFactory.createLineBorder(Color.RED));
+                } else {
+                    // Reset the border to the default color if the validation passes
+                    txtEmail.setBorder(UIManager.getBorder("TextField.border"));
+                }
+            }
+        });
+
+        JLabel lbHiringDate = new JLabel("<html>Hiring Date <span style='color:red;'>*</span></html>");
         lbHiringDate.setFont(new Font("Arial", Font.PLAIN, 14));
         lbHiringDate.setBounds(31, 205, 100, 20);
         panel.add(lbHiringDate);
 
         txtHiringDate = new JTextField();
-        txtHiringDate.setBounds(31, 235, 508, 25);
+        txtHiringDate.setBounds(31, 235, 590, 25);
         panel.add(txtHiringDate);
 
         JCheckBox chkIsActive = new JCheckBox();
@@ -130,24 +132,15 @@ public class AddAdmin extends JPanel {
         panel.add(chkIsManager);
         chkIsManager.setBackground(Color.WHITE);
 
-        JLabel lbDepartment = new JLabel("Department");
+        JLabel lbDepartment = new JLabel("<html>Department <span style='color:red;'>*</span></html>");
         lbDepartment.setFont(new Font("Arial", Font.PLAIN, 14));
         lbDepartment.setBounds(31, 439, 100, 20);
         panel.add(lbDepartment);
 
-        txtDepartment = new JTextField();
-        txtDepartment.setFont(new Font("Arial", Font.PLAIN, 14));
-        txtDepartment.setBounds(31, 469, 508, 25);
-        panel.add(txtDepartment);
-
-        JLabel lbJobTitle = new JLabel("Job Title");
+        JLabel lbJobTitle = new JLabel("<html>Job Title <span style='color:red;'>*</span></html>");
         lbJobTitle.setFont(new Font("Arial", Font.PLAIN, 14));
         lbJobTitle.setBounds(31, 504, 100, 20);
         panel.add(lbJobTitle);
-
-        txtJobTitle = new JTextField();
-        txtJobTitle.setBounds(31, 528, 508, 25);
-        panel.add(txtJobTitle);
 
         JButton btnSave = new JButton("Save");
         btnSave.setBackground(Color.RED);
@@ -155,20 +148,28 @@ public class AddAdmin extends JPanel {
         btnSave.setBounds(31, 563, 85, 30);
         panel.add(btnSave);
 
-        JLabel lbIsManager = new JLabel("Is Manager");
+        JLabel lbIsManager = new JLabel("<html>Is Manager <span style='color:red;'>*</span></html>");
         lbIsManager.setFont(new Font("Arial", Font.PLAIN, 14));
         lbIsManager.setBounds(31, 275, 100, 20);
         panel.add(lbIsManager);
 
-        JLabel lbIsActive = new JLabel("Is Active");
+        JLabel lbIsActive = new JLabel("<html>Is Active <span style='color:red;'>*</span></html>");
         lbIsActive.setFont(new Font("Arial", Font.PLAIN, 14));
         lbIsActive.setBounds(31, 332, 73, 13);
         panel.add(lbIsActive);
 
-        JLabel lbIsAgreement = new JLabel("Is Agreement");
+        JLabel lbIsAgreement = new JLabel("<html>Is Agreement <span style='color:red;'>*</span></html>");
         lbIsAgreement.setFont(new Font("Arial", Font.PLAIN, 14));
         lbIsAgreement.setBounds(31, 382, 100, 20);
         panel.add(lbIsAgreement);
+        
+        JComboBox cboDepartment = new JComboBox();
+        cboDepartment.setBounds(31, 469, 303, 21);
+        panel.add(cboDepartment);
+        
+        JComboBox cboJobTitle = new JComboBox();
+        cboJobTitle.setBounds(31, 532, 303, 21);
+        panel.add(cboJobTitle);
 
         // 🔍 Validation Logic
         btnSave.addActionListener(e -> {
@@ -176,8 +177,6 @@ public class AddAdmin extends JPanel {
             String email = txtEmail.getText();
             String phone = txtPhone.getText();
             String hiringDate = txtHiringDate.getText();
-            String department = txtDepartment.getText();
-            String jobTitle = txtJobTitle.getText();
 
             if (Checking.isEmptyOrWhitespace(name)) {
                 showMessage("Name cannot be empty");
@@ -206,15 +205,7 @@ public class AddAdmin extends JPanel {
                 return;
             }
 
-            if (Checking.isEmptyOrWhitespace(department)) {
-                showMessage("Department cannot be empty");
-                return;
-            }
-
-            if (Checking.isEmptyOrWhitespace(jobTitle)) {
-                showMessage("Job Title cannot be empty");
-                return;
-            }
+           
 
             showMessage("All data is valid. Ready to save!");
         });
