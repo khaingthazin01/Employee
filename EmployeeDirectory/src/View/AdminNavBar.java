@@ -12,6 +12,9 @@ import java.util.LinkedHashMap;
 
 import java.util.Map;
 
+import java.awt.event.ActionListener;
+
+import java.awt.event.ActionEvent;
 
 public class AdminNavBar extends JFrame {
  
@@ -31,6 +34,8 @@ public class AdminNavBar extends JFrame {
  
 	private JLabel activeLabel = null;
 
+	
+ 
 	public AdminNavBar() {
 
 		setTitle("Employee Directory");
@@ -110,7 +115,7 @@ public class AdminNavBar extends JFrame {
 
 		navPanel.setOpaque(false);
  
-		String[] menuItems = { "Employee Dashboard", "Admin Dashboard", "Add Admin" };
+		String[] menuItems = { "Employee Dashboard", "Admin Dashboard", "Add Admin" ,"Employee Details" };
  
 		for (String item : menuItems) {
 
@@ -248,7 +253,7 @@ public class AdminNavBar extends JFrame {
 
 	}
  
-	private void setActiveNav(String name) {
+	void setActiveNav(String name) {
 
 		if (activeLabel != null) {
 
@@ -267,11 +272,10 @@ public class AdminNavBar extends JFrame {
 	}
  
 	private void createPanels() {
-
-	    panels.put("AddAdmin", new AddAdmin()); // <- Add this
-		panels.put("AdminDashboard", panelWithLabel("Admin Dashboard"));
-		panels.put("EmployeeDashboard", panelWithLabel("Employee Dashboard"));
-
+	    panels.put("EmployeeDashboard", new EmployeeDashboardAdminView(this));
+	    panels.put("AdminDashboard", panelWithLabel("Admin Dashboard"));
+		panels.put("AddAdmin", new AddAdmin()); // <- Add this
+	    panels.put("EmployeeDetails", new EmployeeDetailsAdminView(this));
 	}
  
 	private JPanel panelWithLabel(String text) {
@@ -283,7 +287,18 @@ public class AdminNavBar extends JFrame {
 		return panel;
 
 	}
- 
+	// In AdminNavBar.java
+	public JPanel getContentPanel() {
+	    return contentPanel;
+	}
+
+	public CardLayout getCardLayout() {
+	    return cardLayout;
+	}
+	// In AdminNavBar.java
+	public Map<String, JPanel> getPanels() {
+	    return panels;
+	}
 	
 	public static void main(String[] args) {
 

@@ -271,7 +271,10 @@ public class EmployeeNavBar extends JFrame {
 
 	private void createPanels() {
 		
- 		panels.put("EmployeeDashboard", panelWithLabel("Employee Dashboard"));
+		//panels.put("Em", new AddAdmin()); // <- Add this
+	    panels.put("EmployeeDashboard", new EmployeeDashboard(contentPanel, cardLayout));
+ 		panels.put("EmployeeDetailsUserView", new EmployeeDetailsUserView(contentPanel, cardLayout));
+
  
 	}
 
